@@ -34,7 +34,11 @@ const App = () => {
     setLocal();
   }, [checkIt, removeItem]);
 
-  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")));
+  const [todos, setTodos] = useState(() => {
+    return localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos"))
+      : [];
+  });
   const [todoValue, setTodoValue] = useState("");
 
   return (
@@ -48,6 +52,7 @@ const App = () => {
         />
         <button className="submit">+</button>
       </form>
+
       {todos.map((todo, index) => {
         return (
           <Task removeItem={removeItem} id={index} key={index} todo={todo} />
@@ -58,3 +63,4 @@ const App = () => {
 };
 
 export default App;
+
