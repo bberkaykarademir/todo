@@ -28,6 +28,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    setLocal();
     getLocal();
   }, []);
   useEffect(() => {
